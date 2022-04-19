@@ -1,5 +1,11 @@
+import Tab from './components/Tab';
+
 function App() {
-  return <div className="App">앱테스트입니다</div>;
+  return (
+    <>
+      <Tab />
+    </>
+  );
 }
 
 export default App;
