@@ -16,6 +16,7 @@
   font-weight: 700;
   color: $font-color-sub;
   transition: color 0.3s ease-out;
+  cursor: pointer;
   &::after {
     content: '';
     z-index: 1;
