@@ -1,10 +1,20 @@
-import Tab from './components/Tab';
+import Dropdown from './components/dropdown';
+import Tab from './components/tab';
 import './scss/style.scss';
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './pages/main-page';
 
 function App() {
   return (
     <>
-      <Tab />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+
+        <Route path="/mission/*">
+          <Route path="dropdown" element={<Dropdown />} />
+          <Route path="tab" element={<Tab />} />
+        </Route>
+      </Routes>
     </>
   );
 }

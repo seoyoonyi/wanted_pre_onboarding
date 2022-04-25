@@ -9,13 +9,16 @@ function Tab() {
   };
   return (
     <>
+      {/* TODO 
+          - 메인페이지로 돌아가기
+           */}
       <div className="tabmenuWrap">
         <div className="inner">
           <div className="tabmenuGroup">
             {types.map((type, index) => (
               <button
                 className={active === type ? 'tabmenu active' : 'tabmenu'}
-                key={Date.now().toString + type}
+                key={index}
                 onClick={(e) => {
                   setActive(type);
                   borderActive(index);
