@@ -1,36 +1,44 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import menuList from '../data/menu.json';
 
 function Tab() {
-  const types = ['감자', '고구마', '카레라이스'];
-  const [active, setActive] = useState(types[0]);
-  const [borderDistance, setBorderDistance] = useState(0);
+  const [active, setActive] = useState(menuList[0].name);
+  const [moveDistance, setMoveDistance] = useState(0);
   const borderActive = (index) => {
-    setBorderDistance(100 * index);
+    setMoveDistance(100 * index);
   };
+
+  const handleClickTab = (name, index) => {
+    setActive(name);
+    borderActive(index);
+  };
+
   return (
     <>
-      {/* TODO 
-          - 메인페이지로 돌아가기
-           */}
+      <Link to={'/'}>돌아가기</Link>
       <div className="tabmenuWrap">
         <div className="inner">
           <div className="tabmenuGroup">
-            {types.map((type, index) => (
-              <button
-                className={active === type ? 'tabmenu active' : 'tabmenu'}
-                key={index}
-                onClick={(e) => {
-                  setActive(type);
-                  borderActive(index);
-                }}
-              >
-                {type}
-              </button>
-            ))}
+            {menuList.map((menu, index) => {
+              const { name, id } = menu;
+              return (
+                <button
+                  className={active === name ? 'tabmenu active' : 'tabmenu'}
+                  key={id}
+                  onClick={() => handleClickTab(name, index)}
+                >
+                  {name}
+                </button>
+              );
+            })}
           </div>
           <span
             className="border"
-            style={{ transform: `translateX(${borderDistance}%)` }}
+            style={{
+              transform: `translateX(${moveDistance}%)`,
+              transition: '.5s',
+            }}
           ></span>
         </div>
       </div>
