@@ -4,7 +4,7 @@ import './scss/style.scss';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/main-page';
 
-function App() {
+const App = () => {
   return (
     <>
       <Routes>
@@ -17,6 +17,6 @@ function App() {
       </Routes>
     </>
   );
-}
+};
 
 export default App;

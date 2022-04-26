@@ -6,8 +6,10 @@ function Dropdown() {
   const [isDisplayed, setIsDisplayed] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
+  const [typingLength, setTypingLegnth] = useState(0);
 
   const searchTitle = 'All Symbols';
+  const notFoundResult = '일치하는 결과가 없습니다.';
 
   const handleFilterKeyword = (e) => {
     const inputValue = e.target.value;
@@ -17,6 +19,7 @@ function Dropdown() {
       return name.toUpperCase().startsWith(inputValue.toUpperCase()) === true;
     });
 
+    setTypingLegnth(inputValue?.length);
     setFilteredData(ret);
   };
 
@@ -49,23 +52,18 @@ function Dropdown() {
           />
           <h4>{searchTitle}</h4>
           <ul className="options">
-            {filteredData?.length > 0
-              ? filteredData.map((data) => {
-                  const { name, id } = data;
-                  return (
-                    <li key={id} onClick={handleClickKeyword}>
-                      {name}
-                    </li>
-                  );
-                })
-              : searchList.map((keyword) => {
-                  const { name, id } = keyword;
-                  return (
-                    <li key={id} onClick={handleClickKeyword}>
-                      {name}
-                    </li>
-                  );
-                })}
+            {filteredData?.length === 0 && typingLength > 0 && notFoundResult}
+            {(filteredData?.length === 0 && typingLength === 0
+              ? searchList
+              : filteredData
+            ).map((data) => {
+              const { name, id } = data;
+              return (
+                <li key={id} onClick={handleClickKeyword}>
+                  {name}
+                </li>
+              );
+            })}
           </ul>
         </div>
       ) : null}

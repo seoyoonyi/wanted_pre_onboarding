@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import menuList from '../data/menu.json';
 
-function Tab() {
+const Tab = () => {
   const [active, setActive] = useState(menuList[0].name);
   const [moveDistance, setMoveDistance] = useState(0);
   const borderActive = (index) => {
@@ -44,6 +44,6 @@ function Tab() {
       </div>
     </>
   );
-}
+};
 
 export default Tab;
