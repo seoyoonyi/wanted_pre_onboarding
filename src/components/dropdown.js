@@ -4,7 +4,7 @@ import searchList from '../data/search.json';
 
 function Dropdown() {
   const [isDisplayed, setIsDisplayed] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
+  const [clickedText, setClickedText] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [typingLength, setTypingLegnth] = useState(0);
 
@@ -28,7 +28,7 @@ function Dropdown() {
       target: { innerText },
     } = e;
 
-    setIsClicked(innerText);
+    setClickedText(innerText);
     setIsDisplayed(!isDisplayed);
   };
 
@@ -41,7 +41,7 @@ function Dropdown() {
           setIsDisplayed(!isDisplayed);
         }}
       >
-        {isClicked || searchTitle}
+        {clickedText || searchTitle}
       </div>
       {isDisplayed ? (
         <div className="content">
